@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Astria Sports Club | Elite Martial Arts Centre</title>
+
+  <meta name="description"
+    content="Astria Sports Club of India – A premier Martial Arts Training Centre building strength, discipline, and a drug-free generation for over 17 years.">
+  <link rel="icon" href="img/logo.png" type="image/png">
+
+  <!-- Core Libraries -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.35/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { brand: { red: '#D41920' } } } }
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- ==== NOISE & CUSTOM CURSOR ==== -->
+  <div class="noise-bg"></div>
+  <div id="cursor-dot"></div>
+  <div id="cursor-follower"></div>
+
+  <!-- ==== SPLIT-PAGE LOADER ==== -->
+  <div id="loader">
+    <div class="loader-percent" data-text="ASTRIA." id="loader-percent">ASTRIA.</div>
+    <p
+      style="font-family:'Outfit',sans-serif; margin-top: 20px; color: #555; letter-spacing: 5px; text-transform:uppercase; font-size: 0.8rem;">
+      Loading Experience</p>
+  </div>
+
+  <!-- ==== NAVBAR ==== -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-logo hover-target">
+      <img src="img/logo.png" alt="Astria Sports Club">
+      <span>ASTRIA</span>
+    </a>
+    <ul class="nav-links">
+      <li class="nav-item hover-target"><a href="#philosophy" data-text="PHILOSOPHY">PHILOSOPHY</a></li>
+      <li class="nav-item hover-target"><a href="#programs" data-text="PROGRAMS">PROGRAMS</a></li>
+      <li class="nav-item hover-target"><a href="#social" data-text="SOCIAL RECOVERY">SOCIAL RECOVERY</a></li>
+      <li class="nav-item hover-target"><a href="#instructors" data-text="INSTRUCTORS">INSTRUCTORS</a></li>
+      <li class="nav-item hover-target"><a href="#contact" data-text="CONTACT">CONTACT</a></li>
+      <li><a href="https://forms.google.com" target="_blank" rel="noopener" class="nav-cta hover-target">JOIN THE
+          CLUB</a></li>
+    </ul>
+    <button class="hamburger hover-target" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="#philosophy" class="hover-target" data-text="PHILOSOPHY">PHILOSOPHY</a>
+    <a href="#programs" class="hover-target" data-text="PROGRAMS">PROGRAMS</a>
+    <a href="#social" class="hover-target" data-text="SOCIAL RECOVERY">SOCIAL RECOVERY</a>
+    <a href="#instructors" class="hover-target" data-text="INSTRUCTORS">INSTRUCTORS</a>
+    <a href="#contact" class="hover-target" data-text="CONTACT">CONTACT</a>
+    <a href="https://forms.google.com" target="_blank" class="hover-target"
+      style="-webkit-text-stroke:0; color:#D41920; font-size: 6vw;" data-text="JOIN THE CLUB">JOIN THE CLUB</a>
+  </div>
+
+  <!-- ==== HERO ==== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" data-speed="0.8"></div>
+    <div class="hero-content">
+      <div class="hero-subtitle">Est. 17+ Years of Excellence</div>
+      <h1 class="hero-title font-heading hover-target">BE <span class="red-text">STRONG.</span><br>BE <span
+          class="red-text">CALM.</span></h1>
+      <p class="hero-desc">Building Strength, Discipline & a Drug-Free Generation through the raw power of Martial Arts.
+      </p>
+    </div>
+  </section>
+
+  <!-- SPORTY MARQUEE -->
+  <div class="marquee-container hover-target">
+    <div class="marquee-content">
+      <div class="marquee-item">
+        <span>MARTIAL ARTS</span><span>★</span>
+        <span>KARATE & KUNG FU</span><span>★</span>
+        <span>YOGA & KALARI</span><span>★</span>
+        <span>KICKBOXING</span><span>★</span>
+        <span>TUMBLING</span><span>★</span>
+        <span>SELF DEFENSE</span><span>★</span>
+        <!-- Repeat for seamless scroll -->
+        <span>MARTIAL ARTS</span><span>★</span>
+        <span>KARATE & KUNG FU</span><span>★</span>
+        <span>YOGA & KALARI</span><span>★</span>
+        <span>KICKBOXING</span><span>★</span>
+        <span>TUMBLING</span><span>★</span>
+        <span>SELF DEFENSE</span><span>★</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==== PROGRAMS ==== -->
+  <section class="section" id="programs">
+    <div class="sec-header">
+      <span class="sec-number hover-target">[ 01 ] SPECIALIZATION</span>
+      <h2 class="sec-title hover-target">MASTER YOUR <span style="color:var(--red)">CRAFT</span></h2>
+    </div>
+
+    <div class="programs-grid">
+      <div class="prog-card hover-target">
+        <img src="img/karate.png" class="prog-img" alt="Karate">
+        <div class="prog-content">
+          <h3 class="prog-title stroke-text">KARATE & KUNG FU</h3>
+          <p class="prog-desc">Traditional striking arts focusing on precision, power, and kata mastery.</p>
+        </div>
+      </div>
+      <div class="prog-card hover-target">
+        <img src="img/yoga.png" class="prog-img" alt="Yoga">
+        <div class="prog-content">
+          <h3 class="prog-title stroke-text">YOGA & KALARI</h3>
+          <p class="prog-desc">Blend of ancient Indian wellness and Kalaripayattu combat. Build inner warrior agility.
+          </p>
+        </div>
+      </div>
+      <div class="prog-card hover-target">
+        <img src="img/kickboxing.png" class="prog-img" alt="Kickboxing">
+        <div class="prog-content">
+          <h3 class="prog-title stroke-text">KICKBOXING / BOXING</h3>
+          <p class="prog-desc">High-intensity combat fitness combining striking and conditioning for athletic peak.</p>
+        </div>
+      </div>
+      <div class="prog-card hover-target">
+        <img src="img/tumbling.png" class="prog-img" alt="Tumbling">
+        <div class="prog-content">
+          <h3 class="prog-title stroke-text">TUMBLING & POWER</h3>
+          <p class="prog-desc">Acrobatic training for explosive power, aerial techniques, and dynamic movement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== PHILOSOPHY ==== -->
+  <section class="section" id="philosophy">
+    <div class="sec-header">
+      <span class="sec-number hover-target">[ 02 ] OUR PHILOSOPHY</span>
+      <h2 class="sec-title hover-target">THE WAY OF THE <br><span class="stroke-text">WARRIOR MIND</span></h2>
+    </div>
+
+    <div class="philosophy-layout">
+      <div class="phil-text">
+        <h3 class="phil-quote hover-target">"DISCIPLINE IS THE <span>BRIDGE</span> BETWEEN GOALS AND ACCOMPLISHMENT."
+        </h3>
+        <p style="color:var(--gray); margin-bottom: 3rem; font-size: 1.1rem; max-width: 500px;">
+          Students receive professional training in Kung-Fu, Self Defense, Weapons Training, and Fighting Games, guided
+          by experienced instructors emphasizing discipline and mental strength.
+        </p>
+
+        <div class="phil-grid">
+          <div class="phil-item hover-target">
+            <h4>DISCIPLINE</h4>
+            <p>Building structured habits that translate from the dojo to daily life.</p>
+          </div>
+          <div class="phil-item hover-target">
+            <h4>MENTAL STRENGTH</h4>
+            <p>Sharpening focus, resilience, and emotional control under pressure.</p>
+          </div>
+          <div class="phil-item hover-target">
+            <h4>PHYSICAL POWER</h4>
+            <p>Developing strength, flexibility, and endurance through rigorous training.</p>
+          </div>
+          <div class="phil-item hover-target">
+            <h4>SELF DEFENSE</h4>
+            <p>Practical techniques for real-world confidence and personal safety.</p>
+          </div>
+        </div>
+      </div>
+      <div class="phil-img img-wrap hover-target">
+        <img src="img/philosophy.png" alt="Martial Arts Meditation" data-speed="scrollY">
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== SOCIAL RECOVERY ==== -->
+  <section class="recovery-section" id="social">
+    <div class="sec-header">
+      <span class="sec-number hover-target">[ 03 ] RECOVERY</span>
+      <h2 class="sec-title hover-target">BUILD A <span style="color:var(--red)">DRUG-FREE</span> <br>GENERATION</h2>
+    </div>
+
+    <div class="rec-layout">
+      <div class="img-wrap hover-target">
+        <img src="img/social-recovery.png" alt="Social Recovery" data-speed="0.9">
+      </div>
+      <div>
+        <div class="rec-box hover-target" style="margin-bottom: 2vw;">
+          <h3 class="font-heading stroke-text">YOUTH EMPOWERMENT</h3>
+          <p style="color:var(--gray);">Structured programs for teens and young adults to build character and life
+            skills instead of falling to substance abuse.</p>
+        </div>
+        <div class="rec-box hover-target" style="margin-bottom: 2vw; border-color: var(--white);">
+          <h3 class="font-heading stroke-text">COMMUNITY REACH</h3>
+          <p style="color:var(--gray);">Free workshops and camps in schools, colleges, and community centers across
+            India to spread martial discipline.</p>
+        </div>
+        <div class="rec-box hover-target" style="border-color: var(--gray-dark);">
+          <h3 class="font-heading stroke-text">COMPETITION PATH</h3>
+          <p style="color:var(--gray);">State and national level competitions giving students a platform to excel, prove
+            their worth, and secure their future.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== INSTRUCTORS ==== -->
+  <section class="section" id="instructors">
+    <div class="sec-header">
+      <span class="sec-number hover-target">[ 04 ] LEADERS</span>
+      <h2 class="sec-title hover-target">GUIDED BY <span class="stroke-text">MASTERS</span></h2>
+    </div>
+
+    <div class="inst-grid">
+      <div class="inst-card hover-target">
+        <div class="inst-img-wrap"><img src="img/instructor.png" alt="Grand Master"
+            style="width:100%; height:100%; object-fit:cover;"></div>
+        <h3 class="font-heading stroke-text">GRAND MASTER</h3>
+        <p class="inst-role">Head Instructor — Kung Fu & Weapons</p>
+      </div>
+      <div class="inst-card hover-target">
+        <div class="inst-img-wrap"><img src="img/self-defense.png" alt="Self Defense Expert"
+            style="width:100%; height:100%; object-fit:cover;"></div>
+        <h3 class="font-heading stroke-text">SELF DEFENSE EXPERT</h3>
+        <p class="inst-role">Lead Coach — Combat</p>
+      </div>
+      <div class="inst-card hover-target">
+        <div class="inst-img-wrap"><img src="img/weapons.png" alt="Weapons Specialist"
+            style="width:100%; height:100%; object-fit:cover;"></div>
+        <h3 class="font-heading stroke-text">WEAPONS SPECIALIST</h3>
+        <p class="inst-role">Senior Coach — Kata</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== CONTACT ==== -->
+  <section class="section" id="contact">
+    <div class="sec-header">
+      <span class="sec-number hover-target">[ 05 ] CONNECT</span>
+      <h2 class="sec-title hover-target">START YOUR <span style="color:var(--red)">JOURNEY</span></h2>
+    </div>
+
+    <div class="contact-layout">
+      <div class="contact-details">
+        <div class="c-item hover-target">
+          <h4>LOCATION</h4>
+          <p>Astria Sports Club of India<br>Training Centre, India</p>
+        </div>
+        <div class="c-item hover-target">
+          <h4>PHONE</h4>
+          <a href="#">+91 XXXXX XXXXX</a>
+        </div>
+        <div class="c-item hover-target">
+          <h4>EMAIL</h4>
+          <a href="#">info@astriasportsclub.in</a>
+        </div>
+        <div class="c-item hover-target">
+          <h4>HOURS</h4>
+          <p>Mon - Sat: 6:00 AM - 9:00 PM<br>Sun: 7:00 AM - 12:00 PM</p>
+        </div>
+      </div>
+      <div>
+        <form id="contactForm">
+          <div class="form-control hover-target">
+            <input type="text" id="name" required>
+            <label for="name">YOUR FULL NAME</label>
+          </div>
+          <div class="form-control hover-target">
+            <input type="email" id="email" required>
+            <label for="email">EMAIL ADDRESS</label>
+          </div>
+          <div class="form-control hover-target">
+            <input type="tel" id="tel">
+            <label for="tel">PHONE NUMBER</label>
+          </div>
+          <div class="form-control hover-target">
+            <textarea id="msg" required></textarea>
+            <label for="msg">HOW CAN WE HELP YOU?</label>
+          </div>
+          <button type="submit" class="btn-huge hover-target">SEND MESSAGE →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== FOOTER ==== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div>
+        <h2 class="footer-huge hover-target">ASTRIA <span>SPORTS</span></h2>
+        <p style="color:var(--gray);font-family:var(--font-heading);letter-spacing:2px;margin-top:20px;font-size:1.2rem;"
+          class="hover-target">BE STRONG. BE CALM.</p>
+      </div>
+      <div class="f-links">
+        <div class="f-link-col hover-target">
+          <h5>QUICK LINKS</h5>
+          <a href="#philosophy">Our Philosophy</a>
+          <a href="#programs">Programs</a>
+          <a href="#social">Social Recovery</a>
+          <a href="#instructors">Instructors</a>
+        </div>
+        <div class="f-link-col hover-target">
+          <h5>CONNECT</h5>
+          <a href="https://forms.google.com" target="_blank">Join The Club</a>
+          <a href="#">Email Us</a>
+          <a href="#">Instagram</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="hover-target">© 2026 ASTRIA SPORTS CLUB OF INDIA.</p>
+      <p class="hover-target">BUILDING A DRUG FREE GENERATION.</p>
+    </div>
+  </footer>
+
+  <!-- Scroll To Top (Right Positioned) -->
+  <button id="scrollTop" aria-label="Scroll to top" class="hover-target">↑</button>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>
