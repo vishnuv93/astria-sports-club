@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
     gestureOrientation: 'vertical',
     smoothWheel: true,
     wheelMultiplier: 1,
-    smoothTouch: true, // Enable smooth scrolling on touch devices entirely
-    touchMultiplier: 2,
-    syncTouch: true, // Let native touch events run to prevent ScrollTrigger bugs
+    smoothTouch: false, // Prevent artificial fast scroll on phone (use basic native scroll)
+    touchMultiplier: 1, // Restore basic 1x swipe multiplier
+    syncTouch: true,
   });
 
   function raf(time) {
@@ -209,7 +209,12 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       heroSection.addEventListener('mousemove', (e) => updateTarget(e.clientX, e.clientY));
-      heroSection.addEventListener('touchmove', (e) => updateTarget(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+      // Only track touch move if screen is wide enough to avoid mobile flickering/heavy repaints
+      heroSection.addEventListener('touchmove', (e) => {
+        if (window.innerWidth >= 768) {
+           updateTarget(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: true });
       
       // Auto-drift if user leaves or stops interacting
       heroSection.addEventListener('mouseleave', () => isInteracting = false);

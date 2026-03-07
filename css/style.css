@@ -680,13 +680,16 @@ h4,
   pointer-events: none;
 }
 
-.img-wrap:hover img {
-  transform: scale(1.08);
-  filter: grayscale(100%) contrast(1.2);
-}
+/* Premium Image Hover Effect (Desktop Only to prevent touch flicker conflict) */
+@media (hover: hover) {
+  .img-wrap:hover img {
+    transform: scale(1.08);
+    filter: grayscale(100%) contrast(1.2);
+  }
 
-.img-wrap:hover::after {
-  opacity: 1;
+  .img-wrap:hover::after {
+    opacity: 1;
+  }
 }
 
 /* ---- Programs Grid ---- */
@@ -1195,6 +1198,10 @@ h4,
     display: none;
   }
 
+  /* Prevent heavy mix-blend-mode flickering on mobile scroll */
+  .noise-bg {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
