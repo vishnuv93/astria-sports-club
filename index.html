@@ -72,15 +72,44 @@
       style="-webkit-text-stroke:0; color:#D41920; font-size: 6vw;" data-text="JOIN THE CLUB">JOIN THE CLUB</a>
   </div>
 
-  <!-- ==== HERO ==== -->
-  <section class="hero" id="hero">
-    <div class="hero-bg" data-speed="0.8"></div>
-    <div class="hero-content">
-      <div class="hero-subtitle">Est. 17+ Years of Excellence</div>
-      <h1 class="hero-title font-heading hover-target">BE <span class="red-text">STRONG.</span><br>BE <span
-          class="red-text">CALM.</span></h1>
-      <p class="hero-desc">Building Strength, Discipline & a Drug-Free Generation through the raw power of Martial Arts.
-      </p>
+  <!-- ==== HERO DUAL-LAYER MASK ==== -->
+  <section class="hero dual-hero" id="hero">
+    
+    <!-- BOTTOM LAYER (Calm) -->
+    <div class="layer layer-bottom">
+      <div class="hero-bg calm-bg" data-speed="0.8"></div>
+      <div class="hero-content text-center">
+        <div class="hero-subtitle">
+          <span class="line bg-gray"></span>
+          <span class="text text-gray">Building Discipline</span>
+          <span class="line bg-gray"></span>
+        </div>
+        <h1 class="hero-title font-heading hover-target calm-title">FIND <br>CALM.</h1>
+      </div>
+    </div>
+
+    <!-- TOP LAYER (Strong - Masked) -->
+    <div class="layer layer-top mask-target">
+      <div class="hero-bg strong-bg" data-speed="0.8"></div>
+      <div class="hero-content text-center">
+        <div class="hero-subtitle">
+          <span class="line"></span>
+          <span class="text">Est. 17+ Years of Excellence</span>
+          <span class="line"></span>
+        </div>
+        <h1 class="hero-title font-heading hover-target">
+          BE <span class="red-text">STRONG.</span><br>BE <span class="red-text">CALM.</span>
+        </h1>
+        <p class="hero-desc"><span class="desc-text" style="display:inline-block;">Building Strength, Discipline & a Drug-Free <br class="hidden md:block">Generation through the raw power of Martial Arts.</span></p>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator hover-target" style="z-index: 10;">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <span>DISCOVER</span>
     </div>
   </section>
 
@@ -89,15 +118,19 @@
     <div class="marquee-content">
       <div class="marquee-item">
         <span>MARTIAL ARTS</span><span>★</span>
-        <span>KARATE & KUNG FU</span><span>★</span>
-        <span>YOGA & KALARI</span><span>★</span>
+        <span>KARATE</span><span>★</span>
+        <span>KUNG FU</span><span>★</span>
+        <span>YOGA</span><span>★</span>
+        <span>KALARI</span><span>★</span>
         <span>KICKBOXING</span><span>★</span>
         <span>TUMBLING</span><span>★</span>
         <span>SELF DEFENSE</span><span>★</span>
         <!-- Repeat for seamless scroll -->
         <span>MARTIAL ARTS</span><span>★</span>
-        <span>KARATE & KUNG FU</span><span>★</span>
-        <span>YOGA & KALARI</span><span>★</span>
+        <span>KARATE</span><span>★</span>
+        <span>KUNG FU</span><span>★</span>
+        <span>YOGA</span><span>★</span>
+        <span>KALARI</span><span>★</span>
         <span>KICKBOXING</span><span>★</span>
         <span>TUMBLING</span><span>★</span>
         <span>SELF DEFENSE</span><span>★</span>
@@ -109,23 +142,36 @@
   <section class="section" id="programs">
     <div class="sec-header">
       <span class="sec-number hover-target">[ 01 ] SPECIALIZATION</span>
-      <h2 class="sec-title hover-target">MASTER YOUR <span style="color:var(--red)">CRAFT</span></h2>
+      <div style="overflow: hidden;"><h2 class="sec-title hover-target">MASTER YOUR <span style="color:var(--red)">CRAFT</span></h2></div>
     </div>
 
     <div class="programs-grid">
       <div class="prog-card hover-target">
         <img src="img/karate.png" class="prog-img" alt="Karate">
         <div class="prog-content">
-          <h3 class="prog-title stroke-text">KARATE & KUNG FU</h3>
-          <p class="prog-desc">Traditional striking arts focusing on precision, power, and kata mastery.</p>
+          <h3 class="prog-title stroke-text">KARATE</h3>
+          <p class="prog-desc">Traditional striking art focusing on precision, power, and kata mastery.</p>
+        </div>
+      </div>
+      <div class="prog-card hover-target">
+        <img src="img/kungfu.png" class="prog-img" alt="Kung Fu">
+        <div class="prog-content">
+          <h3 class="prog-title stroke-text">KUNG FU</h3>
+          <p class="prog-desc">Ancient Chinese martial art focusing on discipline, technique, and form.</p>
         </div>
       </div>
       <div class="prog-card hover-target">
         <img src="img/yoga.png" class="prog-img" alt="Yoga">
         <div class="prog-content">
-          <h3 class="prog-title stroke-text">YOGA & KALARI</h3>
-          <p class="prog-desc">Blend of ancient Indian wellness and Kalaripayattu combat. Build inner warrior agility.
-          </p>
+          <h3 class="prog-title stroke-text">YOGA</h3>
+          <p class="prog-desc">Ancient Indian wellness practice. Build inner strength, flexibility, and calm.</p>
+        </div>
+      </div>
+      <div class="prog-card hover-target">
+        <img src="img/kalari.png" class="prog-img" alt="Kalari">
+        <div class="prog-content">
+          <h3 class="prog-title stroke-text">KALARI</h3>
+          <p class="prog-desc">Ancient Indian martial art focusing on combat agility and traditional weapons.</p>
         </div>
       </div>
       <div class="prog-card hover-target">
@@ -149,7 +195,7 @@
   <section class="section" id="philosophy">
     <div class="sec-header">
       <span class="sec-number hover-target">[ 02 ] OUR PHILOSOPHY</span>
-      <h2 class="sec-title hover-target">THE WAY OF THE <br><span class="stroke-text">WARRIOR MIND</span></h2>
+      <div style="overflow: hidden;"><h2 class="sec-title hover-target">THE WAY OF THE <br><span class="stroke-text">WARRIOR MIND</span></h2></div>
     </div>
 
     <div class="philosophy-layout">
@@ -190,7 +236,7 @@
   <section class="recovery-section" id="social">
     <div class="sec-header">
       <span class="sec-number hover-target">[ 03 ] RECOVERY</span>
-      <h2 class="sec-title hover-target">BUILD A <span style="color:var(--red)">DRUG-FREE</span> <br>GENERATION</h2>
+      <div style="overflow: hidden;"><h2 class="sec-title hover-target">BUILD A <span style="color:var(--red)">DRUG-FREE</span> <br>GENERATION</h2></div>
     </div>
 
     <div class="rec-layout">
@@ -221,7 +267,7 @@
   <section class="section" id="instructors">
     <div class="sec-header">
       <span class="sec-number hover-target">[ 04 ] LEADERS</span>
-      <h2 class="sec-title hover-target">GUIDED BY <span class="stroke-text">MASTERS</span></h2>
+      <div style="overflow: hidden;"><h2 class="sec-title hover-target">GUIDED BY <span class="stroke-text">MASTERS</span></h2></div>
     </div>
 
     <div class="inst-grid">
@@ -250,7 +296,7 @@
   <section class="section" id="contact">
     <div class="sec-header">
       <span class="sec-number hover-target">[ 05 ] CONNECT</span>
-      <h2 class="sec-title hover-target">START YOUR <span style="color:var(--red)">JOURNEY</span></h2>
+      <div style="overflow: hidden;"><h2 class="sec-title hover-target">START YOUR <span style="color:var(--red)">JOURNEY</span></h2></div>
     </div>
 
     <div class="contact-layout">

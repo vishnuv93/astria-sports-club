@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     smoothWheel: true,
     wheelMultiplier: 1,
     touchMultiplier: 2,
+    syncTouch: true, // Let native touch events run to prevent ScrollTrigger bugs
   });
 
   function raf(time) {
@@ -106,8 +107,15 @@ document.addEventListener('DOMContentLoaded', () => {
   hamburger.addEventListener('click', () => {
     const isActive = hamburger.classList.toggle('active');
     mobileMenu.classList.toggle('active');
-    if (isActive) lenis.stop();
-    else lenis.start();
+    if (isActive) {
+      lenis.stop();
+      gsap.fromTo(mobileLinks, 
+        { y: 40, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "expo.out", delay: 0.2 }
+      );
+    } else {
+      lenis.start();
+    }
   });
 
   mobileLinks.forEach(link => {
@@ -147,30 +155,105 @@ document.addEventListener('DOMContentLoaded', () => {
     lenis.scrollTo(0, { duration: 1.5, ease: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
   });
 
-  // ---- 7. GSAP SCROLLTRIGGER ANIMATIONS ----
+    // ---- 7. GSAP SCROLLTRIGGER ANIMATIONS ----
   function initPageAnimations() {
 
-    // Hero Entrance
+    // Refresh ScrollTriggers strictly for mobile after Lenis init
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+
+    // Hero Entrance (Dual Layer)
     const tl = gsap.timeline();
-    tl.fromTo('.hero-subtitle', { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 1, ease: "power3.out" })
-      .fromTo('.hero-title', { opacity: 0, y: 50, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 1.2, ease: "power3.out" }, "-=0.8")
-      .fromTo('.hero-desc', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1, ease: "power3.out" }, "-=0.9");
+    
+    // Zoom both backgrounds slightly
+    gsap.fromTo('.hero-bg', 
+      { scale: 1.15 }, 
+      { scale: 1, duration: 3, ease: "power3.out" }
+    );
+
+    // Calm layer entrance
+    tl.fromTo('.calm-title', { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 2, ease: "power2.out" }, 0)
+      .fromTo('.layer-bottom .line', { width: 0 }, { width: 40, duration: 1, ease: "power4.out" }, 0.5)
+      .fromTo('.layer-bottom .text', { opacity: 0 }, { opacity: 0.8, duration: 1 }, 0.8)
+
+    // Strong layer entrance (Mask Expansion)
+      .to('.layer-top', { '--mask-size': window.innerWidth < 768 ? '60vw' : '25vw', duration: 2, ease: "power3.inOut" }, 1.5)
+      .fromTo('.layer-top .line', { width: 0 }, { width: 40, duration: 1, ease: "power4.out" }, 2)
+      .fromTo('.layer-top .text', { opacity: 0, y: 10 }, { opacity: 0.8, y: 0, duration: 0.8, ease: "power2.out" }, 2.2)
+      
+    // Scroll indicator reveal
+      .fromTo('.scroll-indicator', 
+        { opacity: 0, y: -20 }, 
+        { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, 
+        "-=0.5"
+      );
+
+    // ---- HERO MASK INTERACTION ----
+    const topLayer = document.querySelector('.layer-top');
+    const heroSection = document.querySelector('.dual-hero');
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight / 2;
+    let currentX = window.innerWidth / 2;
+    let currentY = window.innerHeight / 2;
+    let isInteracting = false;
+    let driftTime = 0;
+
+    if (topLayer && heroSection) {
+      // Interactive tracking
+      const updateTarget = (clientX, clientY) => {
+        isInteracting = true;
+        targetX = clientX;
+        targetY = clientY;
+      };
+
+      heroSection.addEventListener('mousemove', (e) => updateTarget(e.clientX, e.clientY));
+      heroSection.addEventListener('touchmove', (e) => updateTarget(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+      
+      // Auto-drift if user leaves or stops interacting
+      heroSection.addEventListener('mouseleave', () => isInteracting = false);
+      heroSection.addEventListener('touchend', () => { setTimeout(() => isInteracting = false, 1000); });
+
+      // Smooth Animation Loop
+      gsap.ticker.add(() => {
+        if (!isInteracting) {
+          // Autonomous slow drifting
+          driftTime += 0.01;
+          const radiusX = window.innerWidth * 0.3;
+          const radiusY = window.innerHeight * 0.3;
+          targetX = window.innerWidth / 2 + Math.cos(driftTime) * radiusX;
+          targetY = window.innerHeight / 2 + Math.sin(driftTime * 0.8) * radiusY;
+        }
+
+        // Interpolate current to target for smoothness
+        currentX += (targetX - currentX) * 0.1;
+        currentY += (targetY - currentY) * 0.1;
+
+        topLayer.style.setProperty('--x', `${currentX}px`);
+        topLayer.style.setProperty('--y', `${currentY}px`);
+      });
+    }
 
     // Section Headers Reveal
     gsap.utils.toArray('.sec-header').forEach(header => {
-      gsap.fromTo(header,
-        { opacity: 0, y: 50 },
-        { scrollTrigger: { trigger: header, start: "top 80%" }, opacity: 1, y: 0, duration: 1, ease: "expo.out" }
-      );
+      const number = header.querySelector('.sec-number');
+      const title = header.querySelector('.sec-title');
+      
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: header, start: "top 85%" }
+      });
+      
+      if (number) tl.fromTo(number, { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" });
+      if (title) tl.fromTo(title, { yPercent: 100 }, { yPercent: 0, duration: 1.2, ease: "expo.out" }, "-=0.4");
     });
 
     // Program Cards Stagger
     gsap.fromTo('.prog-card',
-      { opacity: 0, y: 100 },
-      { scrollTrigger: { trigger: '.programs-grid', start: "top 75%" }, opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: "expo.out" }
+      { opacity: 0, y: 50 },
+      { scrollTrigger: { trigger: '.programs-grid', start: "top 85%", invalidateOnRefresh: true }, opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: "expo.out" }
     );
 
-    // Parallax Images
+    // Parallax Images (Enabled on all devices)
     gsap.utils.toArray('.img-wrap img').forEach(img => {
       gsap.to(img, {
         yPercent: 15,
@@ -179,21 +262,22 @@ document.addEventListener('DOMContentLoaded', () => {
           trigger: img.parentElement,
           start: "top bottom",
           end: "bottom top",
-          scrub: true
+          scrub: true,
+          invalidateOnRefresh: true
         }
       });
     });
 
     // Rec Boxes Stagger
     gsap.fromTo('.rec-box',
-      { opacity: 0, x: 50 },
-      { scrollTrigger: { trigger: '.rec-layout', start: "top 75%" }, opacity: 1, x: 0, duration: 1, stagger: 0.2, ease: "power3.out" }
+      { opacity: 0, x: window.innerWidth < 768 ? 20 : 50 },
+      { scrollTrigger: { trigger: '.rec-layout', start: "top 85%", invalidateOnRefresh: true }, opacity: 1, x: 0, duration: 1, stagger: window.innerWidth < 768 ? 0.1 : 0.2, ease: "power3.out" }
     );
 
     // Instructors Stagger
     gsap.fromTo('.inst-card',
-      { opacity: 0, y: 50, scale: 0.95 },
-      { scrollTrigger: { trigger: '.inst-grid', start: "top 80%" }, opacity: 1, y: 0, scale: 1, duration: 1, stagger: 0.2, ease: "expo.out" }
+      { opacity: 0, y: 30, scale: 0.95 },
+      { scrollTrigger: { trigger: '.inst-grid', start: "top 85%", invalidateOnRefresh: true }, opacity: 1, y: 0, scale: 1, duration: 1, stagger: 0.15, ease: "expo.out" }
     );
 
     // Contact Details Stagger
@@ -228,6 +312,39 @@ document.addEventListener('DOMContentLoaded', () => {
           btn.style.borderColor = 'var(--gray-dark)';
         }, 3000);
       }, 1500);
+    });
+  }
+
+  // ---- 9. 3D TILT EFFECT (Desktop Only) ----
+  if (window.innerWidth >= 768) {
+    const tiltCards = document.querySelectorAll('.prog-card, .inst-card, .rec-box, .img-wrap');
+    tiltCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -12; // Max 12 deg
+        const rotateY = ((x - centerX) / centerX) * 12;
+        
+        gsap.to(card, {
+          rotateX: rotateX,
+          rotateY: rotateY,
+          transformPerspective: 1000,
+          ease: "power2.out",
+          duration: 0.4
+        });
+      });
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+          rotateX: 0,
+          rotateY: 0,
+          ease: "power3.out",
+          duration: 0.8
+        });
+      });
     });
   }
 });
