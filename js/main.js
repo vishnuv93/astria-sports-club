@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gestureOrientation: 'vertical',
     smoothWheel: true,
     wheelMultiplier: 1,
+    smoothTouch: true, // Enable smooth scrolling on touch devices entirely
     touchMultiplier: 2,
     syncTouch: true, // Let native touch events run to prevent ScrollTrigger bugs
   });
@@ -250,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Program Cards Stagger
     gsap.fromTo('.prog-card',
       { opacity: 0, y: 50 },
-      { scrollTrigger: { trigger: '.programs-grid', start: "top 85%", invalidateOnRefresh: true }, opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: "expo.out" }
+      { scrollTrigger: { trigger: '.programs-grid', start: "top 95%", toggleActions: "restart none none reverse", invalidateOnRefresh: true }, opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: "expo.out" }
     );
 
     // Parallax Images (Enabled on all devices)
@@ -259,10 +260,10 @@ document.addEventListener('DOMContentLoaded', () => {
         yPercent: 15,
         ease: "none",
         scrollTrigger: {
-          trigger: img.parentElement,
+          trigger: img.closest('.img-wrap'),
           start: "top bottom",
           end: "bottom top",
-          scrub: true,
+          scrub: 1, // Add slight scrub smoothing for mobile
           invalidateOnRefresh: true
         }
       });
@@ -271,13 +272,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Rec Boxes Stagger
     gsap.fromTo('.rec-box',
       { opacity: 0, x: window.innerWidth < 768 ? 20 : 50 },
-      { scrollTrigger: { trigger: '.rec-layout', start: "top 85%", invalidateOnRefresh: true }, opacity: 1, x: 0, duration: 1, stagger: window.innerWidth < 768 ? 0.1 : 0.2, ease: "power3.out" }
+      { scrollTrigger: { trigger: '.rec-layout', start: "top 95%", toggleActions: "restart none none reverse", invalidateOnRefresh: true }, opacity: 1, x: 0, duration: 1, stagger: window.innerWidth < 768 ? 0.1 : 0.2, ease: "power3.out" }
     );
 
     // Instructors Stagger
     gsap.fromTo('.inst-card',
       { opacity: 0, y: 30, scale: 0.95 },
-      { scrollTrigger: { trigger: '.inst-grid', start: "top 85%", invalidateOnRefresh: true }, opacity: 1, y: 0, scale: 1, duration: 1, stagger: 0.15, ease: "expo.out" }
+      { scrollTrigger: { trigger: '.inst-grid', start: "top 95%", toggleActions: "restart none none reverse", invalidateOnRefresh: true }, opacity: 1, y: 0, scale: 1, duration: 1, stagger: 0.15, ease: "expo.out" }
     );
 
     // Contact Details Stagger

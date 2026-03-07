@@ -54,11 +54,12 @@ body {
   font-family: var(--font-body);
   background-color: var(--black);
   color: var(--white);
-  overflow-x: hidden;
   line-height: 1.6;
-  cursor: none;
-  /* Custom cursor everywhere */
+  overflow-x: hidden;
+  width: 100%;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: none; /* Custom cursor everywhere */
 }
 
 /* ---- Noise Texture Overlay ---- */
@@ -630,6 +631,7 @@ h4,
 .section {
   padding: 8vw 4vw;
   position: relative;
+  overflow: hidden; /* Added to strictly contain parallax imagery on mobile */
 }
 
 .sec-header {
